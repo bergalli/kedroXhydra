@@ -9,7 +9,7 @@ from typing import Any, Dict
 import pandas as pd
 
 
-def split_data(data: pd.DataFrame, example_test_data_ratio: float) -> Dict[str, Any]:
+def split_data(data: pd.DataFrame, test_data_ratio: float) -> Dict[str, Any]:
     """Node for splitting the classical Iris data set into training and test
     sets, each split into features and labels.
     The split ratio parameter is taken from conf/project/parameters.yml.
@@ -32,7 +32,7 @@ def split_data(data: pd.DataFrame, example_test_data_ratio: float) -> Dict[str, 
 
     # Split to training and testing data
     n = data.shape[0]
-    n_test = int(n * example_test_data_ratio)
+    n_test = int(n * test_data_ratio)
     training_data = data.iloc[n_test:, :].reset_index(drop=True)
     test_data = data.iloc[:n_test, :].reset_index(drop=True)
 

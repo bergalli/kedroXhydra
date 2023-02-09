@@ -13,15 +13,13 @@ import pandas as pd
 
 
 def train_model(
-    train_x: pd.DataFrame, train_y: pd.DataFrame, parameters: Dict[str, Any]
+    train_x: pd.DataFrame, train_y: pd.DataFrame, num_iter, learning_rate
 ) -> np.ndarray:
     """Node for training a simple multi-class logistic regression model. The
     number of training iterations as well as the learning rate are taken from
     conf/project/parameters.yml. All of the data as well as the parameters
     will be provided to this function at the time of execution.
     """
-    num_iter = parameters["example_num_train_iter"]
-    lr = parameters["example_learning_rate"]
     X = train_x.to_numpy()
     Y = train_y.to_numpy()
 
@@ -39,7 +37,7 @@ def train_model(
             z = np.dot(X, theta)
             h = _sigmoid(z)
             gradient = np.dot(X.T, (h - y)) / y.size
-            theta -= lr * gradient
+            theta -= learning_rate * gradient
         # Save the weights for each model
         weights.append(theta)
 

@@ -1,0 +1,7 @@
+defaults:
+#  - base/catalog
+#  - base/logging
+  - base@_global_:
+    - parameters
+    - parameters/data_engineering
+    - parameters/data_science
